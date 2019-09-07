@@ -39,13 +39,47 @@ paths:
         - name: createProductRequest
           in: body
           schema:
-            $ref: '#/definitions/ProductRequest'
+            $ref: '#/definitions/ProductCreateRequest'
           required: true
       responses:
         '200':
           description: OK
           schema:
             $ref: '#/definitions/ProductResponse'
+
+  /product/update:
+    post:
+      tags:
+        - product
+      operationId: updateProduct
+      parameters:
+        - name: updateProductRequest
+          in: body
+          schema:
+            $ref: '#/definitions/ProductUpdateRequest'
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ProductResponse'
+
+  /product/delete:
+    delete:
+      tags:
+        - product
+      operationId: deleteProduct
+      parameters:
+        - name: productId
+          in: query
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ProductDeleteResponse'
+
   /health:
     get:
       tags:
@@ -63,8 +97,8 @@ definitions:
     type: string
     enum: &PARTNER [CTRIP, ELONG]
 
-  ProductRequest:
-    description: The request to get product
+  ProductCreateRequest:
+    description: The request to create product
     properties:
       productId:
         type: integer
@@ -82,6 +116,26 @@ definitions:
         items:
           type: string
 
+  ProductUpdateRequest:
+    description: The request to update product
+    properties:
+      productId:
+        type: integer
+      productName:
+        type: string
+      partner:
+        $ref: '#/definitions/Partner'
+      price:
+        type: number
+        format: double
+      sellable:
+        type: boolean
+      cancellationPolicies:
+        type: array
+        items:
+          type: string
+
+
   ProductResponse:
     description: the response for the product
     type: object
@@ -94,6 +148,17 @@ definitions:
         type: string
       data:
         $ref: '#/definitions/Product'
+
+  ProductDeleteResponse:
+    description: the response for product deletion
+    type: object
+    properties:
+      success:
+        type: boolean
+      errorCode:
+        type: string
+      errorMessage:
+        type: string
 
   Product:
     type: object
