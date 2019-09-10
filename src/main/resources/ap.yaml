@@ -111,10 +111,8 @@ definitions:
         format: double
       sellable:
         type: boolean
-      cancellationPolicies:
-        type: array
-        items:
-          type: string
+      cancellationPolicy:
+        type: string
 
   ProductUpdateRequest:
     description: The request to update product
@@ -130,10 +128,8 @@ definitions:
         format: double
       sellable:
         type: boolean
-      cancellationPolicies:
-        type: array
-        items:
-          type: string
+      cancellationPolicy:
+        type: string
 
 
   ProductResponse:
@@ -174,7 +170,5 @@ definitions:
         format: double
       sellable:
         type: boolean
-      cancellationPolicies:
-        type: array
-        items:
-          type: string
+      cancellationPolicy:
+        type: string
