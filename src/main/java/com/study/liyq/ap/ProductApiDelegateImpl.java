@@ -2,6 +2,7 @@ package com.study.liyq.ap;
 
 import com.google.common.collect.Maps;
 import com.study.liyq.ap.api.ProductApiDelegate;
+import com.study.liyq.ap.exception.ErrorEnum;
 import com.study.liyq.ap.model.*;
 import com.study.liyq.ap.service.IProductService;
 import org.slf4j.Logger;
@@ -78,7 +79,6 @@ public class ProductApiDelegateImpl implements ProductApiDelegate {
         logger.info("deleteProduct, Input parameter:{}", productId);
         Objects.requireNonNull(productId);
 
-        //Product product = products.remove(String.valueOf(productId));
         boolean isDeleted = productService.deleteProduct(productId);
 
 
@@ -86,13 +86,13 @@ public class ProductApiDelegateImpl implements ProductApiDelegate {
         if (isDeleted) {
             response = new ProductDeleteResponse()
                     .success(true)
-                    .errorCode("")
-                    .errorMessage("");
+                    .errorCode(ErrorEnum.NO_ERROR.getErrorCode())
+                    .errorMessage(ErrorEnum.NO_ERROR.getErrorMsg());
         } else {
             response = new ProductDeleteResponse()
                     .success(false)
-                    .errorCode("1")
-                    .errorMessage("product is not found");
+                    .errorCode(ErrorEnum.NO_FOUND.getErrorCode())
+                    .errorMessage(ErrorEnum.NO_FOUND.getErrorMsg());
         }
 
         logger.info("deleteProduct, output response:{}", response);

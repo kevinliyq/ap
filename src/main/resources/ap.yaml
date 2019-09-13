@@ -139,7 +139,7 @@ definitions:
       success:
         type: boolean
       errorCode:
-        type: string
+        type: integer
       errorMessage:
         type: string
       data:
@@ -152,7 +152,7 @@ definitions:
       success:
         type: boolean
       errorCode:
-        type: string
+        type: integer
       errorMessage:
         type: string
 
