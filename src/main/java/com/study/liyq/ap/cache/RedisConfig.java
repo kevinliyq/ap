@@ -36,7 +36,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      * @return
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+    public RedisTemplate<String, ?> redisTemplate(RedisConnectionFactory factory) {
 
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         // 配置连接工厂
@@ -83,7 +83,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      * @return
      */
     @Bean
-    public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> redisTemplate) {
+    public ValueOperations<String, ?> valueOperations(RedisTemplate<String, ?> redisTemplate) {
         return redisTemplate.opsForValue();
     }
 

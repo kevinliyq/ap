@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 @Service
 public class ProductApiDelegateImpl implements ProductApiDelegate {
@@ -48,18 +46,7 @@ public class ProductApiDelegateImpl implements ProductApiDelegate {
 
         Objects.requireNonNull(productRequest);
 
-//        Product product = Optional.of(productRequest)
-//                .map(request -> new Product()
-//                        .productId(request.getProductId())
-//                        .productName(request.getProductName())
-//                        .partner(request.getPartner())
-//                        .price(request.getPrice())
-//                        .sellable(request.isSellable())
-//                        .cancellationPolicies(request.getCancellationPolicies()))
-//                .get();
-
         Product product = productService.createProduct(productRequest);
-        //products.putIfAbsent(String.valueOf(productRequest.getProductId()),product);
 
         ProductResponse response = new ProductResponse()
                 .success(true)
@@ -76,18 +63,6 @@ public class ProductApiDelegateImpl implements ProductApiDelegate {
         Objects.requireNonNull(updateProductRequest);
 
         Product product = productService.updateProduct(updateProductRequest);
-
-//        Product product = Optional.of(updateProductRequest)
-//                .map(request -> new Product()
-//                        .productId(request.getProductId())
-//                        .productName(request.getProductName())
-//                        .partner(request.getPartner())
-//                        .price(request.getPrice())
-//                        .sellable(request.isSellable())
-//                        .cancellationPolicies(request.getCancellationPolicies()))
-//                .get();
-//
-//        products.putIfAbsent(String.valueOf(updateProductRequest.getProductId()),product);
 
         ProductResponse response = new ProductResponse()
                 .success(true)
